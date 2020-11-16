@@ -1,7 +1,6 @@
 from .. import utils
 from .tentacles import Tentacle, DevTentacle
 from .parts import Section
-from . import sensors
 from . import motors
 import statistics
 
