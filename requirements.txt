@@ -1,0 +1,9 @@
+numpy
+reproducible
+setproctitle
+pyqt5
+cython
+
+# dev requirements
+pre-commit
+pytest

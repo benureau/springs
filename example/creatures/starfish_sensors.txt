@@ -1,0 +1,18 @@
+List of sensors:
+
+* angle of center
+* angular velocity of center
+* angle of control group wrt center or previous control group (skeleton proprioception)
+* angular velocities of those angles
+* detect touching on either side of a control group
+
+* lidar (to plan?)
+
+
+Diversity features:
+
+* mean height of the center body
+* mean angle of the center body
+* accumulated angle of the center body (redundant with precedent?)
+* mean horizontal velocity (same as end position?)
+* mean absolute vertical velocity?
