@@ -14,13 +14,13 @@ from springs import creatures
 # args = parser.parse_args()
 
 K = 8
-MASS = 0.005
+MASS = 0.5
 SIZE = 80.0
-BEND = 0.45
+BEND = 2.0
 DT = 0.005
 
-# SECTION = springs.CentralBoneSection  # FIXME: instability?
-SECTION = springs.Section
+SECTION = springs.CentralBoneSection  # FIXME: instability?
+# SECTION = springs.Section
 
 def update(space):
     tentacle = space.entities[0]
@@ -33,13 +33,13 @@ def update(space):
 
 random.seed(0)
 spaces = []
-for engine in ['cpp']:
-#for engine in ['cpp', 'cython', 'box2d']:
+#for engine in ['cpp']:
+for i, engine in enumerate(['cpp', 'cython', 'box2d']):
     space = springs.create_space(dt=DT, gravity=0.0, engine=engine)
 
     x_0, y_0 = 400, 500
-    jr = space.add_node(x_0, y_0         , 1, fixed=True)
-    jl = space.add_node(x_0, y_0 + SIZE  , 1, fixed=True)
+    jr = space.add_node(x_0, y_0 + 5*i         , 1, fixed=True)
+    jl = space.add_node(x_0, y_0 + 5*i + SIZE  , 1, fixed=True)
     base = (jl, jr)
     if SECTION == springs.CentralBoneSection:
         jm = space.add_node(x_0, y_0 + SIZE/2, 1, fixed=True)

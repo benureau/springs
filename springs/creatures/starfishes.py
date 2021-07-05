@@ -248,3 +248,7 @@ class DevStarfish(Starfish):
     def change_width_dev_factor(self, factor):
         for tentacle in self.tentacles:
             tentacle.width_dev_factor = factor
+
+    def change_mass(self, new_mass):
+        for node in self.nodes:
+            node.mass = new_mass

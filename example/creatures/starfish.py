@@ -9,7 +9,7 @@ import springs
 GRAVITY = (0.0, -100.0)
 FLOOR   = True
 NODE_MASS = 0.1
-BIRTH_SIZE = 1.0
+BIRTH_SIZE = 0.5
 MUSCLE_N_GROUP = 2
 GROWTH = False
 HEADLESS = False
@@ -26,8 +26,8 @@ if FLOOR:
     #     space.add_rect(20*i - 1, 20*(i+1) + 1, -500, random.uniform(79, 80), 0.5)
 
 # morphology of the starfish
-K = 8
-arm_dims = 5 * [[(40, 30) for i in range(K)] + [(40, 0)]]
+K = 12
+arm_dims = 10 * [[(40, 30) for i in range(K)] + [(40, 0)]]
 materials = {
     'node_center' : {'mass': NODE_MASS, 'friction': 0.5, 'fixed': False},
     'node_section': {'mass': NODE_MASS, 'friction': 0.5, 'fixed': False},

@@ -269,8 +269,8 @@ class SpaceCanvas(QWidget):
 
     def draw_triangle(self, qp, triangle):
         qp.setPen(QPen(self.grey, 1))
-        qp.setBrush(QColor(128, 128, 128, 25))
-        # qp.setBrush(Qt.transparent)
+        # qp.setBrush(QColor(128, 128, 128, 25))
+        qp.setBrush(Qt.transparent)
         points = QtGui.QPolygonF([QtCore.QPointF(self.size_factor*triangle.xA, self.size_factor*triangle.yA),
                                   QtCore.QPointF(self.size_factor*triangle.xB, self.size_factor*triangle.yB),
                                   QtCore.QPointF(self.size_factor*triangle.xC, self.size_factor*triangle.yC)])

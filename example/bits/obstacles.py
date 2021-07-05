@@ -26,7 +26,7 @@ for i in range(K):
 # node = space.add_node(x_0 + -7, y_0 + 55.0, mass=1.0)
 # node.v_x, node.v_y = 7 * speed, - 55 * speed
 
-triangle = space.add_triangle(x_0-200, y_0-150, x_0+200, y_0-50, x_0, y_0 + 150.0, 1.0)
+#triangle = space.add_triangle(x_0-200, y_0-150, x_0+200, y_0-50, x_0, y_0 + 150.0, 1.0)
 
 rect = space.add_rect(x_0 - 100.0, x_0 + 150.0, y_0 - 100.0, y_0 + 50.0, 1.0)
 

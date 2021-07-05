@@ -67,3 +67,4 @@ def benchmark_space(space, engine, n=20000, duration=None):
 if __name__ == '__main__':
     benchmark('cpp', duration=5.0)
     benchmark('cython', duration=5.0)
+    benchmark('box2d', duration=5.0)
