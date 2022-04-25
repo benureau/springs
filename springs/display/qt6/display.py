@@ -5,10 +5,10 @@ import signal
 from pathlib import Path
 from collections.abc import Iterable
 
-from PyQt5.QtWidgets import QWidget, QApplication, QDesktopWidget
-from PyQt5.QtGui import QPainter, QPainterPath, QColor, QPen, QIcon, QFont
-from PyQt5.QtCore import Qt, QTimer, QPoint
-from PyQt5 import QtCore, QtGui
+from PyQt6.QtWidgets import QWidget, QApplication
+from PyQt6.QtGui import QPainter, QPainterPath, QColor, QPen, QIcon, QFont, QColorConstants
+from PyQt6.QtCore import Qt, QTimer, QPoint
+from PyQt6 import QtCore, QtGui
 
 import numpy as np
 import setproctitle
@@ -124,7 +124,7 @@ class SpaceCanvas(QWidget):
 
 #        qp.setPen(QPen(QColor(185, 185, 185), 2))
         qp.setPen(QPen(QColor(128, 128, 128), 2))
-        qp.setFont(QFont("Helvetica", self.HUD_FONT_SIZE * 1.8, QFont.Bold))
+        qp.setFont(QFont("Helvetica", self.HUD_FONT_SIZE * 1.8, QFont.Weight.Bold))
         qp.save()
         qp.scale(1,-1)
         m_size = 789.2820323027551
@@ -144,7 +144,7 @@ class SpaceCanvas(QWidget):
         spacing = self.HUD_FONT_SIZE * 1.4
 
         qp.setPen(QPen(QColor(185, 185, 185), 2))
-        qp.setFont(QFont("Helvetica", self.HUD_FONT_SIZE, QFont.Bold))
+        qp.setFont(QFont("Helvetica", self.HUD_FONT_SIZE, QFont.Weight.Bold))
         # qp.save()
         # qp.scale(1,-1)
         # qp.translate(0, -self.height() / self.zoom)
@@ -175,8 +175,8 @@ class SpaceCanvas(QWidget):
 
         qp = QPainter()
         qp.begin(self)
-        qp.setRenderHint(QPainter.Antialiasing)
-        qp.setRenderHint(QPainter.SmoothPixmapTransform)
+        qp.setRenderHint(QPainter.RenderHint.Antialiasing)
+        qp.setRenderHint(QPainter.RenderHint.SmoothPixmapTransform)
         qp.save()
         qp.scale(self.zoom, -self.zoom)
         # rotate so that gravity point down
@@ -264,13 +264,13 @@ class SpaceCanvas(QWidget):
     def draw_rect(self, qp, rect):
         qp.setPen(QPen(self.grey, 1))
         qp.setBrush(QColor(128, 128, 128, 25))
-        qp.setBrush(QColor(Qt.transparent))
+        qp.setBrush(QColorConstants.Transparent)
         qp.drawRect(self.size_factor*rect.xL, self.size_factor*rect.yB, self.size_factor*rect.width, self.size_factor*rect.height)
 
     def draw_triangle(self, qp, triangle):
         qp.setPen(QPen(self.grey, 1))
         # qp.setBrush(QColor(128, 128, 128, 25))
-        qp.setBrush(Qt.transparent)
+        qp.setBrush(QColorConstants.Transparent)
         points = QtGui.QPolygonF([QtCore.QPointF(self.size_factor*triangle.xA, self.size_factor*triangle.yA),
                                   QtCore.QPointF(self.size_factor*triangle.xB, self.size_factor*triangle.yB),
                                   QtCore.QPointF(self.size_factor*triangle.xC, self.size_factor*triangle.yC)])
@@ -307,7 +307,7 @@ class SpaceDisplay(QApplication):
                        origin_x=0, origin_y=-100, **kwargs):
         """
         :param spf:       seconds per frame.
-        :param display:   display number. `None` for letting pyqt5 choose (probably 0).
+        :param display:   display number. `None` for letting pyqt choose (probably 0).
         :param duration:  duration of the simulation. Does not yield precise results. Use `steps`
                           instead to get repeatable results. Setting `steps` overrides the `duration`
                           parameter. Default to infinity. Note that when simulating multiple
@@ -339,9 +339,9 @@ class SpaceDisplay(QApplication):
                                         paused=paused, origin_x=origin_x, origin_y=origin_y,
                                         hud=hud, **kwargs)
         if display is not None:
-            self.screen = QDesktopWidget().screenGeometry(display)
+            self.screen = self.screens()[display].availableGeometry()
         else:
-            self.screen = QDesktopWidget().screenGeometry()
+            self.screen = self.primaryScreen().availableGeometry()
 
         self.space_canvas.move(self.screen.right() - self.space_canvas.width(), self.screen.top() + 100)
         if fullscreen:
@@ -357,7 +357,7 @@ class SpaceDisplay(QApplication):
     def start_timer(self):
         self.timer = QtCore.QTimer()
         self.timer.setInterval(20)
-        self.timer.setTimerType(Qt.PreciseTimer)
+        # self.timer.setTimerType(Qt.QTimer)
         self.timer.timeout.connect(self.on_timer)
         self.timer.start()
 
@@ -416,7 +416,7 @@ class SpaceDisplay(QApplication):
         self.setWindowIcon(QIcon(path))
 
     def run(self):
-        return self.exec_()
+        return self.exec()
 
 
 if __name__ == '__main__':

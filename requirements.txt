@@ -1,7 +1,7 @@
 numpy
 reproducible
 setproctitle
-pyqt5
+pyqt6
 cython
 
 # dev requirements

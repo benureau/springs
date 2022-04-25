@@ -57,5 +57,5 @@ setuptools.setup(
     ext_modules = cythonize(extensions),
 
     # required dependencies
-    install_requires=['numpy', 'cython', 'reproducible', 'setproctitle', 'pyqt5'],
+    install_requires=['numpy', 'cython', 'reproducible', 'setproctitle', 'pyqt6'],
 )
