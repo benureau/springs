@@ -33,10 +33,10 @@ setuptools.setup(
     description='Springs simulator',
     long_description=long_description,
 
-    url='https://github.com/oist-cnru/pmstrnn',
+    url='https://github.com/benureau/springs',
 
-    author='OIST CNRU',
-    author_email='fabien.benureau@oist.jp',
+    author='Fabien C. Y. Benureau, OIST CNRU, Okinawa, Japan',
+    author_email='fabien@benureau.com',
 
     license='Open Science License',
 
@@ -49,7 +49,7 @@ setuptools.setup(
         'Intended Audience :: Science/Research',
 
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.9',
     ],
 
     # where is our code
